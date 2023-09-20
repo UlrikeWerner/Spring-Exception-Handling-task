@@ -15,4 +15,10 @@ public class GlobalExceptionHandler {
     public ErrorMessage handleNoSuchElementException(NoSuchElementException e) {
         return new ErrorMessage(e.getMessage());
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorMessage handleUnexpectedError(Exception e) {
+        return new ErrorMessage("An unexpected error: " + e.getMessage());
+    }
 }
