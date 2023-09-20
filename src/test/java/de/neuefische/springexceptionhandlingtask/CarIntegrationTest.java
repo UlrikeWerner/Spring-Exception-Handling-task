@@ -8,8 +8,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -30,7 +29,8 @@ public class CarIntegrationTest {
                             "errorMessage": "No Cars found"
                         }
                         """
-                ));
+                ))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());
     }
 
     @Test
@@ -56,6 +56,7 @@ public class CarIntegrationTest {
                             "errorMessage": "Only 'porsche' allowed"
                         }
                         """
-                ));
+                ))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());
     }
 }

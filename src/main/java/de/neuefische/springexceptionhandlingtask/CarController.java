@@ -3,6 +3,7 @@ package de.neuefische.springexceptionhandlingtask;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -25,6 +26,7 @@ public class CarController {
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ErrorMessage handleIllegalArgumentException(IllegalArgumentException e) {
-        return new ErrorMessage(e.getMessage());
+        LocalDateTime timestamp = LocalDateTime.now();
+        return new ErrorMessage(e.getMessage(), timestamp);
     }
 }
