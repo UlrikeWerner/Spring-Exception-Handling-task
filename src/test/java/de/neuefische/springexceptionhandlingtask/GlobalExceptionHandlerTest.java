@@ -26,6 +26,7 @@ class GlobalExceptionHandlerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/cars"))
                 .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.errorMessage").isNotEmpty())
-                .andExpect(jsonPath("$.errorMessage").value(containsString("An unexpected error: ")));
+                .andExpect(jsonPath("$.errorMessage").value(containsString("An unexpected error: ")))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());
     }
 }

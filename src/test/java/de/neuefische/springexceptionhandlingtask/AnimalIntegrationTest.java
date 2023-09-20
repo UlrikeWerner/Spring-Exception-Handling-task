@@ -29,7 +29,8 @@ public class AnimalIntegrationTest {
                             "errorMessage": "No Animals found"
                         }
                         """
-                ));
+                ))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());
     }
 
     @Test
@@ -55,6 +56,7 @@ public class AnimalIntegrationTest {
                             "errorMessage": "Only 'dog' is allowed"
                         }
                         """
-                ));
+                ))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty());
     }
 }
